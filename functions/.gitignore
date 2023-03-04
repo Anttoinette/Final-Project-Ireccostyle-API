@@ -1,2 +1,4 @@
 node_modules/
 service_account.js
+package.json
+package-lock.json
