@@ -6,7 +6,7 @@ import functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
 // import { getReviews, getAllReviews } from "./src/function.js";
-import { getAllFaceshapes, getOneFaceshapeById } from "./src/recommendation.js"
+import { getAllFaceshapes, addFaceshape, getByFaceshape} from "./src/recommendation.js"
 
 // USING COR AND EXPRESS FOR API
 const app = express()
@@ -15,7 +15,12 @@ app.use(express.json())
 
 //GET & POST ROUTES FACESHAPE ...
 app.get('/faceshape', getAllFaceshapes);
-app.get('/faceshape/:faceshapeId', getOneFaceshapeById);  //another get
+app.get('/faceshape/:faceshapeId', getByFaceshape);
+app.post('/faceshape', addFaceshape);
+  
+
+//app.get('/faceshape/:faceshapeId', getByFaceshape);
+//app.get('/faceshape', getByFaceshape)  //another get
 
 // //GET RECOMMENDATION
 // app.get('/recommendation', getAllRecommendation);
@@ -38,7 +43,7 @@ export const api = functions.https.onRequest(app);
 
 //TESTING/unsure //
 
-app.get('/faceshape', (req, res) => {
-    res.send(" Faceshape route ies working.💅🏽")
-});
+// app.get('/faceshape', (req, res) => {
+//     res.send(" Faceshape route is working.💅🏽")
+// });
 
