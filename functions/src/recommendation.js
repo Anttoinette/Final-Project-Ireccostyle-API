@@ -14,7 +14,7 @@ const collectionName = "faceshape"
     //   .catch(err => res.status(500).send({ success: false, message: err}))
     // }
     
-    export async function addFaceshape (req, res) {
+    export async function addFaceshape (req, res) { //create
          const db =  dbConnect()
         const newFaceshape = req.body
       // newFaceshape.updateAt=FieldValue.serverTimestamp()
@@ -22,7 +22,7 @@ const collectionName = "faceshape"
       res.status(202).send({ message: "Faceshape Added"});
     }
     
-    export async function  getAllFaceshapes(req, res) {
+    export async function  getAllFaceshapes(req, res) { //read and getall
       const db = dbConnect()
       const collection = await db.collection('faceshape')
       .get()
@@ -30,7 +30,7 @@ const collectionName = "faceshape"
     res.send(faceshapes)
     }
 
-export async function getByFaceshape(req, res) {
+export async function getByFaceshape(req, res) { //read and get one
   const db = dbConnect()
   const { faceshapeId } = req.params;
   const doc = await db.collection(collectionName).doc(faceshapeId).get()
