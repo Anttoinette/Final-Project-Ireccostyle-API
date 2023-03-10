@@ -7,7 +7,7 @@ import express from "express";
 import cors from "cors";
 // import { getReviews, getAllReviews } from "./src/function.js";
 import { getAllFaceshapes, addFaceshape, getByFaceshape} from "./src/recommendation.js"
-import { getAllReviews, addReview, getByReviews } from "./src/reviews.js"
+import { getAllReviews, addReview } from "./src/reviews.js"
 
 // USING COR AND EXPRESS FOR API
 const app = express()
@@ -22,7 +22,7 @@ app.post('/faceshape', addFaceshape);
 //REVIEW
 app.get('/reviews', getAllReviews);
 app.post('/reviews', addReview);
-app.get("/reviews/:ReviewId", getByReviews);
+// app.get("/reviews/:reviewId", getByReviews);
 
 //TESTING API
 app.get('/test', (req, res) => {
