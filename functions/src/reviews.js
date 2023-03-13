@@ -24,13 +24,13 @@ import { FieldValue } from "firebase-admin/firestore";
 // }
 
 export async function addReview(req,res) {
-  const {review} = req.body
-  const newReview = {review, createdAt: FieldValue.serverTimestamp()}
-  console.log(newReview)
+  const {newReview} = req.body  // deconstructing newReview from req.body
+  const newReview2 = {newReview, createdAt: FieldValue.serverTimestamp()}
+  console.log(newReview2)
   const db = await dbConnect()
   db.collection('reviews')
-  .add(newReview)
-  .then( () => getAllReviews(req,res) )
+  .add(newReview2)
+  .then( () => getAllReviews(req,res) ) // we are running the getallreview function
   .catch(err => res.status(500).send({error: err.message}))
 }
 
@@ -53,14 +53,11 @@ export async function addReview(req,res) {
 // }
 
 export async function getAllReviews(req, res){
-  console.log("--- hitting function-----")
   const db = await dbConnect()
-  console.log("--- connected to db ---")
   db.collection('reviews')
-  // .orderBy('createdAt', 'desc')
+  .orderBy('createdAt', 'desc') //descending order
   .get()
   .then(collection => {
-      console.log("--- getting collection ---")
       const content = collection.docs.map(doc => ({reviewId: doc.id, ...doc.data()}))
       res.send(content)
   })
